@@ -47,19 +47,19 @@ h1 {
 #control-bar {
   position: fixed;
   bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 20px;
+  right: 20px;
+  height: 60px;             /* fixed height */
   background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 15px;
-  padding: 12px 24px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center;   /* center the button(s) horizontally */
+  align-items: center;       /* center vertically */
   z-index: 1000;
-  min-width: 180px;
+  padding: 0 30px;           /* horizontal inner padding */
 }
 
 #control-bar button {
@@ -73,6 +73,7 @@ h1 {
   cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  min-width: 140px;
 }
 
 #control-bar button:hover {
