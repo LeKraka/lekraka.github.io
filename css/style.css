@@ -1,16 +1,26 @@
-/* Base layout */
+:root {
+  --text-color: white;
+  --link-color: #ccc;
+  --link-hover: white;
+  --button-bg: rgba(255, 255, 255, 0.15);
+  --button-hover-bg: rgba(255, 255, 255, 0.3);
+  --button-shadow: rgba(255, 255, 255, 0.3);
+  --button-hover-shadow: rgba(255, 255, 255, 0.5);
+  --content-bar-bg: rgba(183, 183, 183, 0.25);
+}
+
 html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
   height: 100%;
   background: black;
-  color: white;
+  color: var(--text-color);
   font-family: sans-serif;
 }
 
 /* Background layer */
-canvas#starfield {
+#starfield {
   position: fixed;
   top: 0;
   left: 0;
@@ -19,12 +29,16 @@ canvas#starfield {
 
 /* Content layer */
 .content {
-  position: relative;
-  z-index: 1;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
   text-align: center;
+  z-index: 10;
 }
 
 h1 {
@@ -32,37 +46,20 @@ h1 {
   margin-bottom: 1rem;
 }
 
-.links a {
-  display: block;
-  color: #ccc;
-  text-decoration: none;
-  margin: 0.5rem 0;
-  transition: color 0.2s;
-}
-
-.links a:hover {
-  color: white;
-}
-
-#control-bar {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-  height: 50px;
-  background: rgba(183, 183, 183, 0.25);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+/* Content Bar */
+#content-bar {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--content-bar-bg);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  display: flex;
-  justify-content: flex-end;  /* align buttons to the right */
-  align-items: center;
-  padding: 0 16px;
-  z-index: 1000;
 }
 
-#control-bar button {
+#content-bar button,
+#content-bar .button-link {
   background: rgba(255, 255, 255, 0.15);
   border: none;
   border-radius: 10px;
@@ -71,12 +68,18 @@ h1 {
   padding: 6px 14px;
   font-size: 14px;
   cursor: pointer;
-  margin-left: 12px;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  white-space: nowrap; /* prevent text wrapping inside buttons */
 }
 
-#control-bar button:hover {
+#content-bar .button-link{
+ text-decoration: underline;
+}
+
+#content-bar button:hover,
+#content-bar .button-link:hover {
   background: rgba(255, 255, 255, 0.3);
+  text-decoration: none;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }

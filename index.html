@@ -11,19 +11,14 @@
 <body>
   <canvas id="starfield"></canvas>
 
-  <!-- Page Content -->
   <div class="content">
     <h1>Home</h1>
-    <div class="links">
-      <a href="https://github.com/LeKraka/">GitHub</a>
-    </div>
+      <div id="content-bar">
+        <a href="https://github.com/LeKraka/" class="button-link">GitHub</a>
+        <button id="toggle-stars">Toggle Stars</button>
+      </div>
   </div>
-
-  <!-- Control Bar -->
-  <div id="control-bar">
-    <button id="toggle-stars">Turn Off Stars</button>
-  </div>
-
+  
   <!-- Scripts -->
   <script src="js/starfield.js"></script> <!-- Loads starfield and creates global instance -->
   <script src="js/ui.js" type="module"></script> <!-- Handles UI events -->
