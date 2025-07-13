@@ -88,16 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     });
 
-    document.getElementById('contact-link').addEventListener('click', (e) => {
-         e.preventDefault();
-        document.getElementById('contact-panel').classList.add('open');
-    });
-
-    document.getElementById('close-contact').addEventListener('click', () => {
-        document.getElementById('contact-panel').classList.remove('open');
-    });
-
-
     createStars();
     draw();
 });
