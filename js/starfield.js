@@ -1,5 +1,6 @@
 const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
+
 let stars = [];
 const numStars = 300;
 
@@ -20,8 +21,8 @@ function createStars() {
   stars = [];
   for (let i = 0; i < numStars; i++) {
     const angle = Math.random() * 2 * Math.PI;
-    const radiusX = Math.sqrt(Math.random()) * canvas.width * 2;
-    const radiusY = Math.sqrt(Math.random()) * canvas.height * 2;
+    const radiusX = Math.pow(Math.random(), 0.75) * canvas.width * 4;
+    const radiusY = Math.pow(Math.random(), 0.75) * canvas.height * 4;
     stars.push({
       x: Math.cos(angle) * radiusX,
       y: Math.sin(angle) * radiusY,
@@ -39,23 +40,25 @@ function draw() {
   const cy = canvas.height / 2;
 
   for (let star of stars) {
+    star.z -= 2;
+
     if (star.z <= 0) {
       const angle = Math.random() * 2 * Math.PI;
-      const radius = Math.sqrt(Math.random()) * canvas.width * 2;
-      star.x = Math.cos(angle) * radius;
-      star.y = Math.sin(angle) * radius;
+      const radiusX = Math.pow(Math.random(), 0.75) * canvas.width * 4;
+      const radiusY = Math.pow(Math.random(), 0.75) * canvas.height * 4;
+      star.x = Math.cos(angle) * radiusX;
+      star.y = Math.sin(angle) * radiusY;
       star.z = canvas.width;
       star.color = randomColor();
     }
-      let size = (1 - star.z / canvas.width) * 2;
-      size = Math.max(size, 0.1); // Clamp size to a minimum of 0.1
-      ctx.beginPath();
-      ctx.fillStyle = star.color;
-      ctx.arc(x, y, size, 0, 2 * Math.PI);
-      ctx.fill();
+
+    const k = 128 / star.z;
+    const x = cx + star.x * k;
+    const y = cy + star.y * k;
 
     if (x >= 0 && x < canvas.width && y >= 0 && y < canvas.height) {
-      const size = (1 - star.z / canvas.width) * 2;
+      let size = (1 - star.z / canvas.width) * 2;
+      size = Math.max(size, 0.1);
       ctx.beginPath();
       ctx.fillStyle = star.color;
       ctx.arc(x, y, size, 0, 2 * Math.PI);
