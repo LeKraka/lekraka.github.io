@@ -1,4 +1,4 @@
-export default class Starfield {
+class Starfield {
   constructor(canvasId) {
     this.canvas = document.getElementById(canvasId);
     this.ctx = this.canvas.getContext('2d');
@@ -92,3 +92,6 @@ export default class Starfield {
     }
   }
 }
+
+// Create the starfield instance globally so UI can access it
+window.starfield = new Starfield('starfield');
