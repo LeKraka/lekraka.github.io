@@ -2,11 +2,11 @@
   --text-color: white;
   --link-color: #ccc;
   --link-hover: white;
-  --button-bg: rgba(255, 255, 255, 0.15);
+  --button-bg: rgba(255, 255, 255, 0.021);
   --button-hover-bg: rgba(255, 255, 255, 0.3);
   --button-shadow: rgba(255, 255, 255, 0.3);
   --button-hover-shadow: rgba(255, 255, 255, 0.5);
-  --content-bar-bg: rgba(183, 183, 183, 0.25);
+  --content-bar-bg: rgba(183, 183, 183, 0.1);
 }
 
 html, body {
@@ -42,27 +42,25 @@ html, body {
 }
 
 h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
 }
 
 /* Content Bar */
 #content-bar {
   display: flex;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
+  gap: 1rem;
+  padding: 1rem;
   background: var(--content-bar-bg);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 #content-bar button,
 #content-bar .button-link {
   background: rgba(255, 255, 255, 0.15);
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   color: #fff;
   font-weight: 500;
   padding: 6px 14px;
