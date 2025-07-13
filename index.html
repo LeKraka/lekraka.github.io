@@ -36,7 +36,7 @@
       .then(text => {
         const lines = text.trim().split('\n');
         if (lines.length > 1) {
-          document.getElementById('last-updated').textContent = 'Last updated:', lines[1];
+          document.getElementById('last-updated').textContent = 'Last updated:' + lines[1];
         } else {
           document.getElementById('last-updated').textContent = 'Last updated: Unknown';
         }
