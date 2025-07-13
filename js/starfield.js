@@ -3,7 +3,7 @@ class Starfield {
     this.canvas = document.getElementById(canvasId);
     this.ctx = this.canvas.getContext('2d');
 
-    this.numStars = 300;
+    this.numStars = 200;
     this.stars = [];
     this.starsEnabled = true;
     this.animationId = null;
@@ -46,7 +46,7 @@ class Starfield {
   draw() {
     if (!this.starsEnabled) return;
 
-    this.ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+    this.ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
     const cx = this.canvas.width / 2;

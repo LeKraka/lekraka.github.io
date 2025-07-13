@@ -81,3 +81,15 @@ h1 {
   text-decoration: none;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
+
+/* last updated */
+#last-updated {
+  position: fixed;
+  top: 8px;
+  left: 12px;
+  font-size: 1rem;
+  color: #aaa;
+  z-index: 999;
+  pointer-events: none;
+  user-select: none;
+}
