@@ -86,5 +86,11 @@ document.getElementById('toggle-stars').addEventListener('click', () => {
   }
 });
 
+document.getElementById('contact-link').addEventListener('click', (e) => {
+  e.preventDefault();
+  const panel = document.getElementById('contact-panel');
+  panel.classList.toggle('open');
+});
+
 createStars();
 draw();
