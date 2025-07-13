@@ -1,4 +1,4 @@
-# [https://lekraka.github.io/](https://lekraka.github.io/)
+# [lekraka.github.io/](https://lekraka.github.io/)
 
 A minimal personal homepage hosted with GitHub Pages.
 
