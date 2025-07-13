@@ -49,34 +49,35 @@ h1 {
   bottom: 20px;
   left: 20px;
   right: 20px;
-  height: 60px;             /* fixed height */
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 15px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  height: 50px;
+  background: rgba(30, 30, 30, 0.25); /* darker and more transparent */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   display: flex;
-  justify-content: center;   /* center the button(s) horizontally */
-  align-items: center;       /* center vertically */
+  justify-content: flex-end;  /* align buttons to the right */
+  align-items: center;
+  padding: 0 16px;
   z-index: 1000;
-  padding: 0 30px;           /* horizontal inner padding */
 }
 
 #control-bar button {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.15);
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   color: #fff;
-  font-weight: 600;
-  padding: 10px 22px;
-  font-size: 16px;
+  font-weight: 500;
+  padding: 6px 14px;
+  font-size: 14px;
   cursor: pointer;
+  margin-left: 12px;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-  min-width: 140px;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
 }
 
 #control-bar button:hover {
-  background: rgba(255, 255, 255, 0.45);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
+
