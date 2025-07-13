@@ -1,2 +1,2 @@
 # lekraka.github.io
-[Link Text](https://lekraka.github.io/)
+[lekraka.github.io](https://lekraka.github.io/)
