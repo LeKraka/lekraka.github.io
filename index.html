@@ -11,9 +11,46 @@
   <canvas id="starfield"></canvas>
 
   <!-- Single element for displaying last updated info -->
-  <div id="last-updated" style="position: absolute; bottom: 10px; right: 10px; font-size: 0.875rem; color: #ccc;">
-    Loading last updated...
-  </div>
+  <div id="last-updated">Last updated: ...</div>
+
+  <script>
+    function timeAgo(date) {
+      const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
+      const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+
+      const intervals = [
+        { value: 60, unit: 'second' },
+        { value: 60, unit: 'minute' },
+        { value: 24, unit: 'hour' },
+        { value: 7, unit: 'day' },
+      ];
+
+      let duration = seconds;
+      let unit = 'second';
+
+      for (let i = 0; i < intervals.length; i++) {
+        if (duration < intervals[i].value) break;
+        duration /= intervals[i].value;
+        unit = intervals[i].unit;
+      }
+
+      return rtf.format(-Math.floor(duration), unit);
+    }
+
+    fetch('last-updated.txt')
+      .then(response => response.text())
+      .then(text => {
+        const timestamp = text.trim();
+        const date = new Date(timestamp);
+        const readable = timeAgo(date);
+        document.getElementById('last-updated').textContent = `Last updated: ${readable}`;
+      })
+      .catch(err => {
+        console.error('Failed to load update time:', err);
+        document.getElementById('last-updated').textContent = 'Last updated: Unknown';
+      });
+  </script>
+
 
   <div class="content">
     <h1>welcome</h1>
@@ -29,22 +66,7 @@
   <!-- UI interaction -->
   <script src="js/ui.js" type="module"></script>
 
-  <!-- Fetch last-updated text -->
-  <script>
-    fetch('last-updated.txt')
-      .then(response => response.text())
-      .then(text => {
-        const lines = text.trim().split('\n');
-        if (lines.length > 1) {
-          document.getElementById('last-updated').textContent = 'Last updated:' + lines[1];
-        } else {
-          document.getElementById('last-updated').textContent = 'Last updated: Unknown';
-        }
-      })
-      .catch(error => {
-        console.error('Failed to load last-updated.txt:', error);
-        document.getElementById('last-updated').textContent = 'Last updated: Failed to load';
-      });
+  
   </script>
 </body>
 </html>
