@@ -1,11 +1,10 @@
-class Starfield {
+class background {
   constructor(canvasId) {
     this.canvas = document.getElementById(canvasId);
     this.ctx = this.canvas.getContext('2d');
 
     this.numStars = 200;
     this.stars = [];
-    this.starsEnabled = true;
     this.animationId = null;
 
     this.resize = this.resize.bind(this);
@@ -44,8 +43,6 @@ class Starfield {
   }
 
   draw() {
-    if (!this.starsEnabled) return;
-
     this.ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -83,5 +80,5 @@ class Starfield {
   }
 }
 
-// Create the starfield instance globally so UI can access it
-window.starfield = new Starfield('starfield');
+// Create the background instance globally so UI can access it
+window.background = new background('background');
