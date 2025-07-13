@@ -4,10 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>lekraka</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: sans-serif;
+      padding: 2rem;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .dark {
+      --bg: #1e1e1e;
+      --text: #f5f5f5;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <h1>Welcome to lekraka.github.io</h1>
   <p>This is a simple homepage.</p>
   <p><a href="https://github.com/LeKraka/lekraka.github.io">View this project on GitHub</a></p>
+  <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+  </script>
 </body>
 </html>
