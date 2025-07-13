@@ -81,16 +81,6 @@ class Starfield {
 
     this.animationId = requestAnimationFrame(this.draw);
   }
-
-  toggleStars() {
-    this.starsEnabled = !this.starsEnabled;
-    if (this.starsEnabled) {
-      this.draw();
-    } else {
-      cancelAnimationFrame(this.animationId);
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    }
-  }
 }
 
 // Create the starfield instance globally so UI can access it

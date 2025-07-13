@@ -12,19 +12,36 @@
 html, body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  height: 100%;
   background: black;
   color: var(--text-color);
   font-family: sans-serif;
 }
 
-/* Background layer */
 #starfield {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 0;
+}
+
+.ui-link,
+.ui {
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 1.25rem;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ui-link{
+ text-decoration: underline;
+}
+
+.ui-link:hover {
+  background: rgba(255, 255, 255, 0.3);
+  text-decoration: none;
 }
 
 /* Content layer */
@@ -43,6 +60,7 @@ html, body {
 
 h1 {
   font-size: 2rem;
+  pointer-events: none;
 }
 
 /* Content Bar */
@@ -53,43 +71,21 @@ h1 {
   background: var(--content-bar-bg);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  border-radius: 12px;
-}
-
-#content-bar button,
-#content-bar .button-link {
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  font-weight: 500;
-  padding: 6px 14px;
-  font-size: 1.25rem;
-  cursor: pointer;
-  
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  white-space: nowrap; /* prevent text wrapping inside buttons */
-}
-
-#content-bar .button-link{
- text-decoration: underline;
-}
-
-#content-bar button:hover,
-#content-bar .button-link:hover {
-  background: rgba(255, 255, 255, 0.3);
-  text-decoration: none;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 /* last updated */
 #last-updated {
   position: fixed;
-  top: 8px;
-  left: 12px;
-  font-size: 1rem;
-  color: #aaa;
-  z-index: 999;
-  pointer-events: none;
-  user-select: none;
+  margin: 10px;
+}
+
+#ui-panel {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  background: var(--content-bar-bg);
+  backdrop-filter: blur(2px);
+  z-index: 1; /* below content but above starfield */
 }
