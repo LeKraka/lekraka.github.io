@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home | lekraka</title>
+
   <style>
+    /* Base styles */
     html, body {
       margin: 0;
       padding: 0;
@@ -15,12 +17,14 @@
       font-family: sans-serif;
     }
 
+    /* Starfield canvas fills entire screen */
     canvas {
       position: absolute;
       top: 0;
       left: 0;
     }
 
+    /* Centered content */
     .content {
       position: absolute;
       top: 50%;
@@ -35,6 +39,7 @@
       margin: 0 0 1rem 0;
     }
 
+    /* Link styles */
     .links a {
       display: block;
       color: #ccc;
@@ -48,8 +53,12 @@
     }
   </style>
 </head>
+
 <body>
+  <!-- Starfield background -->
   <canvas id="starfield"></canvas>
+
+  <!-- Centered content -->
   <div class="content">
     <h1>Home</h1>
     <div class="links">
@@ -60,6 +69,7 @@
     </div>
   </div>
 
+  <!-- Starfield animation script -->
   <script>
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
