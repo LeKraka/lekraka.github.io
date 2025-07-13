@@ -11,45 +11,45 @@
   <canvas id="starfield"></canvas>
 
   <!-- Single element for displaying last updated info -->
-  <div id="last-updated">Last updated: ...</div>
+  <div id="last-updated">Loading last update...</div>
 
-  <script>
-    function timeAgo(date) {
-      const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
-      const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+<script>
+  function timeSince(date) {
+    const now = new Date();
+    const diffMs = now - date;
+    const diffSec = Math.floor(diffMs / 1000);
+    const diffMin = Math.floor(diffSec / 60);
+    const diffHour = Math.floor(diffMin / 60);
+    const diffDay = Math.floor(diffHour / 24);
 
-      const intervals = [
-        { value: 60, unit: 'second' },
-        { value: 60, unit: 'minute' },
-        { value: 24, unit: 'hour' },
-        { value: 7, unit: 'day' },
-      ];
+    if (diffSec < 60) return "Last updated just now";
+    if (diffMin < 60) return `Last updated ${diffMin} minute${diffMin !== 1 ? 's' : ''} ago`;
+    if (diffHour < 24) return `Last updated ${diffHour} hour${diffHour !== 1 ? 's' : ''} ago`;
 
-      let duration = seconds;
-      let unit = 'second';
+    // After 24h show date in human-readable format
+    return `Last updated on ${date.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })}`;
+  }
 
-      for (let i = 0; i < intervals.length; i++) {
-        if (duration < intervals[i].value) break;
-        duration /= intervals[i].value;
-        unit = intervals[i].unit;
+  fetch('last-updated.txt')
+    .then(response => response.text())
+    .then(text => {
+      const timestamp = text.trim();
+      const updatedDate = new Date(timestamp);
+      if (isNaN(updatedDate)) {
+        document.getElementById('last-updated').textContent = "Last updated: Unknown";
+      } else {
+        document.getElementById('last-updated').textContent = timeSince(updatedDate);
       }
+    })
+    .catch(() => {
+      document.getElementById('last-updated').textContent = "Last updated: Unknown";
+    });
+</script>
 
-      return rtf.format(-Math.floor(duration), unit);
-    }
-
-    fetch('last-updated.txt')
-      .then(response => response.text())
-      .then(text => {
-        const timestamp = text.trim();
-        const date = new Date(timestamp);
-        const readable = timeAgo(date);
-        document.getElementById('last-updated').textContent = `Last updated: ${readable}`;
-      })
-      .catch(err => {
-        console.error('Failed to load update time:', err);
-        document.getElementById('last-updated').textContent = 'Last updated: Unknown';
-      });
-  </script>
 
 
   <div class="content">
