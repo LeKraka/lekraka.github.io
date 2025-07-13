@@ -3,24 +3,119 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>lekraka</title>
+  <title>Home | lekraka</title>
   <style>
-    body {
-      background-color: #1e1e1e;
-      color: #f5f5f5;
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      background: black;
+      color: white;
       font-family: sans-serif;
-      padding: 2rem;
-      transition: background-color 0.3s, color 0.3s;
     }
 
-    a {
-      color: #81b0ff;
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin: 0 0 1rem 0;
+    }
+
+    .links a {
+      display: block;
+      color: #ccc;
+      text-decoration: none;
+      margin: 0.5rem 0;
+      transition: color 0.2s;
+    }
+
+    .links a:hover {
+      color: white;
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to lekraka.github.io</h1>
-  <p>This is a simple homepage.</p>
-  <p><a href="https://github.com/LeKraka/lekraka.github.io">View this project on GitHub</a></p>
+  <canvas id="starfield"></canvas>
+  <div class="content">
+    <h1>Home</h1>
+    <div class="links">
+      <a href="#">About</a>
+      <a href="#">Projects</a>
+      <a href="#">Contact</a>
+      <a href="https://github.com/LeKraka/lekraka.github.io">GitHub</a>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    const numStars = 200;
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    function createStars() {
+      stars = [];
+      for (let i = 0; i < numStars; i++) {
+        stars.push({
+          x: Math.random() * canvas.width - canvas.width / 2,
+          y: Math.random() * canvas.height - canvas.height / 2,
+          z: Math.random() * canvas.width,
+        });
+      }
+    }
+
+    function draw() {
+      ctx.fillStyle = 'black';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = 'white';
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
+
+      for (let star of stars) {
+        star.z -= 1;
+        if (star.z <= 0) {
+          star.z = canvas.width;
+        }
+
+        const k = 128.0 / star.z;
+        const x = cx + star.x * k;
+        const y = cy + star.y * k;
+
+        if (x >= 0 && x < canvas.width && y >= 0 && y < canvas.height) {
+          const size = (1 - star.z / canvas.width) * 2;
+          ctx.beginPath();
+          ctx.arc(x, y, size, 0, 2 * Math.PI);
+          ctx.fill();
+        }
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    createStars();
+    draw();
+  </script>
 </body>
 </html>
