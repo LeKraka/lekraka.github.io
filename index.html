@@ -6,7 +6,6 @@
   <title>Home | lekraka</title>
 
   <style>
-    /* Base styles */
     html, body {
       margin: 0;
       padding: 0;
@@ -17,14 +16,12 @@
       font-family: sans-serif;
     }
 
-    /* Starfield canvas fills entire screen */
     canvas {
       position: absolute;
       top: 0;
       left: 0;
     }
 
-    /* Centered content */
     .content {
       position: absolute;
       top: 50%;
@@ -39,7 +36,6 @@
       margin: 0 0 1rem 0;
     }
 
-    /* Link styles */
     .links a {
       display: block;
       color: #ccc;
@@ -55,10 +51,8 @@
 </head>
 
 <body>
-  <!-- Starfield background -->
   <canvas id="starfield"></canvas>
 
-  <!-- Centered content -->
   <div class="content">
     <h1>Home</h1>
     <div class="links">
@@ -69,7 +63,6 @@
     </div>
   </div>
 
-  <!-- Starfield animation script -->
   <script>
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
@@ -87,9 +80,11 @@
     function createStars() {
       stars = [];
       for (let i = 0; i < numStars; i++) {
+        const angle = Math.random() * 2 * Math.PI;
+        const radius = Math.sqrt(Math.random()) * canvas.width;
         stars.push({
-          x: Math.random() * canvas.width - canvas.width / 2,
-          y: Math.random() * canvas.height - canvas.height / 2,
+          x: Math.cos(angle) * radius,
+          y: Math.sin(angle) * radius,
           z: Math.random() * canvas.width,
         });
       }
@@ -109,7 +104,7 @@
           star.z = canvas.width;
         }
 
-        const k = 128.0 / star.z;
+        const k = 128 / star.z;
         const x = cx + star.x * k;
         const y = cy + star.y * k;
 
