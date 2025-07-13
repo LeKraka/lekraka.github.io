@@ -10,4 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('last-updated-date').textContent = date.trim();
         });
 
+
+
 });

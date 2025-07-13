@@ -4,25 +4,47 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>lekraka.github.io</title>
-
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
   <canvas id="starfield"></canvas>
-  <div id="last-updated" hidden>Last updated: July 13, 2025</div>
-  <div id="last-updated" >Last updated: <span id="last-updated-date">loading...</span></div>
+
+  <!-- Single element for displaying last updated info -->
+  <div id="last-updated" style="position: absolute; bottom: 10px; right: 10px; font-size: 0.875rem; color: #ccc;">
+    Loading last updated...
+  </div>
+
   <div class="content">
     <h1>welcome</h1>
-      <div id="content-bar">
-        <a href="https://github.com/LeKraka/" class="button-link">GitHub</a>
-        <button id="toggle-stars" hidden>Toggle Stars</button>
-      </div>
+    <div id="content-bar">
+      <a href="https://github.com/LeKraka/" class="button-link">GitHub</a>
+      <button id="toggle-stars" hidden>Toggle Stars</button>
+    </div>
   </div>
-  
-  <!-- Scripts -->
-  <script src="js/starfield.js"></script> <!-- Loads starfield and creates global instance -->
-  <script src="js/ui.js" type="module"></script> <!-- Handles UI events -->
 
+  <!-- Starfield background -->
+  <script src="js/starfield.js"></script>
+
+  <!-- UI interaction -->
+  <script src="js/ui.js" type="module"></script>
+
+  <!-- Fetch last-updated text -->
+  <script>
+    fetch('last-updated.txt')
+      .then(response => response.text())
+      .then(text => {
+        const lines = text.trim().split('\n');
+        if (lines.length > 1) {
+          document.getElementById('last-updated').textContent = lines[1];
+        } else {
+          document.getElementById('last-updated').textContent = 'Last updated: Unknown';
+        }
+      })
+      .catch(error => {
+        console.error('Failed to load last-updated.txt:', error);
+        document.getElementById('last-updated').textContent = 'Last updated: Failed to load';
+      });
+  </script>
 </body>
 </html>
