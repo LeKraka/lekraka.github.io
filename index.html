@@ -9,18 +9,55 @@
 
 <body>
   <canvas id="starfield"></canvas>
-  <div id="last-updated">Loading last update...</div>
-  <div id="ui-panel" class="ui"></div>
-  <div class="content">
-    <h1>welcome</h1>
-    <div id="content-bar" class="ui">
-      <a href="https://github.com/LeKraka/" class="ui-link">GitHub</a>
-      <a href="https://open.spotify.com/user/mrkrakalakin" class="ui-link">Spotify</a>
-    </div>
+<div id="last-updated">Loading last update...</div>
+
+<script>
+  function timeSince(date) {
+    const now = new Date();
+    const diffMs = now - date;
+    const diffSec = Math.floor(diffMs / 1000);
+    const diffMin = Math.floor(diffSec / 60);
+    const diffHour = Math.floor(diffMin / 60);
+    const diffDay = Math.floor(diffHour / 24);
+
+    if (diffSec < 60) return "Last updated just now";
+    if (diffMin < 60) return `Last updated ${diffMin} minute${diffMin !== 1 ? 's' : ''} ago`;
+    if (diffHour < 24) return `Last updated ${diffHour} hour${diffHour !== 1 ? 's' : ''} ago`;
+
+    // After 24h show date in human-readable format
+    return `Last updated on ${date.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })}`;
+  }
+
+  fetch('last-updated.txt')
+    .then(response => response.text())
+    .then(text => {
+      const timestamp = text.trim();
+      const updatedDate = new Date(timestamp);
+      if (isNaN(updatedDate)) {
+        document.getElementById('last-updated').textContent = "Last updated: Unknown";
+      } else {
+        document.getElementById('last-updated').textContent = timeSince(updatedDate);
+      }
+    })
+    .catch(() => {
+      document.getElementById('last-updated').textContent = "Last updated: Unknown";
+    });
+</script>
+<div id="ui-panel" class="ui"></div>
+<div class="content">
+  <h1>welcome</h1>
+  <div id="content-bar" class="ui">
+    <a href="https://github.com/LeKraka/" class="ui-link">GitHub</a>
+    <a href="https://open.spotify.com/user/mrkrakalakin" class="ui-link">Spotify</a>
   </div>
-  <!-- Starfield background -->
-  <script src="js/starfield.js"></script>
-  <!-- UI interaction -->
-  <script src="js/ui.js" type="module"></script>
+</div>
+<!-- Starfield background -->
+<script src="js/starfield.js"></script>
+<!-- UI interaction -->
+<script src="js/ui.js" type="module"></script>
 </body>
 </html>
