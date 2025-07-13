@@ -3,6 +3,8 @@ const ctx = canvas.getContext('2d');
 
 let stars = [];
 const numStars = 300;
+let starsEnabled = true;
+let animationId;
 
 function resize() {
   canvas.width = window.innerWidth;
@@ -33,6 +35,8 @@ function createStars() {
 }
 
 function draw() {
+  if (!starsEnabled) return;
+
   ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -66,8 +70,21 @@ function draw() {
     }
   }
 
-  requestAnimationFrame(draw);
+  animationId = requestAnimationFrame(draw);
 }
+
+document.getElementById('toggle-stars').addEventListener('click', () => {
+  starsEnabled = !starsEnabled;
+  const btn = document.getElementById('toggle-stars');
+  if (starsEnabled) {
+    btn.textContent = "Turn Off Stars";
+    draw();
+  } else {
+    btn.textContent = "Turn On Stars";
+    cancelAnimationFrame(animationId);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+});
 
 createStars();
 draw();
