@@ -23,7 +23,7 @@ function createStars() {
   stars = [];
   for (let i = 0; i < numStars; i++) {
     const angle = Math.random() * 2 * Math.PI;
-    const radiusX = Math.random() * canvas.width * 4;
+    const radiusX = Math.random() * canvas.width;
     const radiusY = Math.pow(Math.random(), 0.75) * canvas.height * 4;
     stars.push({
       x: Math.cos(angle) * radiusX,
