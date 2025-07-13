@@ -1,0 +1,45 @@
+/* Base layout */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  background: black;
+  color: white;
+  font-family: sans-serif;
+}
+
+/* Background layer */
+canvas#starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/* Content layer */
+.content {
+  position: relative;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.links a {
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  margin: 0.5rem 0;
+  transition: color 0.2s;
+}
+
+.links a:hover {
+  color: white;
+}
